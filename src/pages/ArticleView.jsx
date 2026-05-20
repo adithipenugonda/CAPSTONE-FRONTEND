@@ -100,8 +100,20 @@ const ArticleView = () => {
           </span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
             <Calendar size={14} />
-            <span>{new Date(article.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>
+              {new Date(article.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })} at{' '}
+              {new Date(article.createdAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+            </span>
           </div>
+          {article.updatedAt && new Date(article.updatedAt).getTime() !== new Date(article.createdAt).getTime() && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+              <Clock size={14} />
+              <span>
+                Last Updated: {new Date(article.updatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })} at{' '}
+                {new Date(article.updatedAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+              </span>
+            </div>
+          )}
         </div>
 
         <h1 style={{ fontSize: '2.75rem', lineHeight: '1.2', marginBottom: '1.5rem', fontWeight: '700' }}>{article.title}</h1>

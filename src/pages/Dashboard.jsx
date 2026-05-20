@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
-import { Edit, Trash2, Ban, CheckCircle, Eye } from 'lucide-react';
+import { Edit, Trash2, Ban, Eye, Clock, Calendar } from 'lucide-react';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -74,9 +74,21 @@ const Dashboard = () => {
               {data.map(article => (
                 <div key={article._id} className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 style={{ marginBottom: '0.5rem' }}>{article.title}</h3>
-                  <span style={{ display: 'inline-block', padding: '0.2rem 0.5rem', background: 'var(--surface-color-light)', borderRadius: '4px', fontSize: '0.75rem', marginBottom: '1rem', width: 'fit-content' }}>
-                    {article.category}
-                  </span>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center', marginBottom: '1rem' }}>
+                    <span style={{ display: 'inline-block', padding: '0.2rem 0.5rem', background: 'var(--surface-color-light)', borderRadius: '4px', fontSize: '0.75rem' }}>
+                      {article.category}
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
+                      <Calendar size={12} />
+                      <span>{new Date(article.createdAt).toLocaleDateString()} {new Date(article.createdAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</span>
+                    </div>
+                    {article.updatedAt && new Date(article.updatedAt).getTime() !== new Date(article.createdAt).getTime() && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
+                        <Clock size={12} />
+                        <span>Updated: {new Date(article.updatedAt).toLocaleDateString()} {new Date(article.updatedAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</span>
+                      </div>
+                    )}
+                  </div>
                   <div style={{ marginTop: 'auto', display: 'flex', gap: '0.5rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
                     <button className="btn btn-outline" style={{ flex: 1, padding: '0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }} onClick={() => navigate(`/articles/${article._id}`)}><Eye size={16} /> View</button>
                     <button className="btn btn-outline" style={{ flex: 1, padding: '0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }} onClick={() => navigate(`/edit-article/${article._id}`)}><Edit size={16} /> Edit</button>

@@ -71,7 +71,7 @@ const EditArticle = () => {
         ...formData,
         author: user._id
       }, { withCredentials: true });
-      
+      console.log(`[CLIENT LOG] Article updated successfully at: ${new Date().toLocaleString()}`);
       navigate('/dashboard');
     } catch (err) {
       console.error('Failed to update article:', err);

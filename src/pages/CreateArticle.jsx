@@ -29,6 +29,7 @@ const CreateArticle = () => {
         ...formData,
         author: user._id
       }, { withCredentials: true });
+      console.log(`[CLIENT LOG] Article published successfully at: ${new Date().toLocaleString()}`);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create article');

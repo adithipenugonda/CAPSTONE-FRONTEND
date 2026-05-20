@@ -165,9 +165,20 @@ const Home = () => {
                 {article.category}
               </span>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
-                  <Clock size={14} />
-                  <span>{new Date(article.createdAt || new Date()).toLocaleDateString()}</span>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.25rem', color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <Clock size={14} />
+                    <span>
+                      {new Date(article.createdAt || new Date()).toLocaleDateString()} at{' '}
+                      {new Date(article.createdAt || new Date()).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+                    </span>
+                  </div>
+                  {article.updatedAt && new Date(article.updatedAt).getTime() !== new Date(article.createdAt).getTime() && (
+                    <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+                      Updated: {new Date(article.updatedAt).toLocaleDateString()} at{' '}
+                      {new Date(article.updatedAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+                    </span>
+                  )}
                 </div>
                 
                 {/* Edit and Delete Buttons for Author */}
