@@ -49,7 +49,7 @@ const Register = () => {
 
         {error && <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: 'var(--danger)', borderRadius: 'var(--radius)', marginBottom: '1rem', fontSize: '0.875rem', border: '1px solid rgba(239, 68, 68, 0.2)' }}>{error}</div>}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <div className="grid grid-cols-2" style={{ gap: '1rem' }}>
             <div className="form-group" style={{ marginBottom: '1rem' }}>
               <label className="form-label">First Name</label>
@@ -63,12 +63,12 @@ const Register = () => {
           
           <div className="form-group" style={{ marginBottom: '1rem' }}>
             <label className="form-label">Email Address</label>
-            <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
+            <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required autoComplete="off" />
           </div>
           
           <div className="form-group" style={{ marginBottom: '1rem' }}>
             <label className="form-label">Password</label>
-            <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
+            <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required autoComplete="new-password" />
           </div>
 
           <div className="form-group" style={{ marginBottom: '1rem' }}>
