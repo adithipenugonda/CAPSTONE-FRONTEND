@@ -38,7 +38,7 @@ const Login = () => {
 
         {error && <div style={{ padding: '0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: 'var(--danger)', borderRadius: 'var(--radius)', marginBottom: '1rem', fontSize: '0.875rem', border: '1px solid rgba(239, 68, 68, 0.2)' }}>{error}</div>}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <div className="form-group">
             <label className="form-label">Email Address</label>
             <input 
@@ -48,6 +48,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required 
               placeholder="you@example.com"
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
@@ -59,6 +60,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required 
               placeholder="••••••••"
+              autoComplete="new-password"
             />
           </div>
           <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={loading}>
