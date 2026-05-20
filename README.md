@@ -26,7 +26,7 @@ Environment Variables
 
 Create a .env file:
 
-VITE_API_URL=your_backend_url
+VITE_API_URL=https://capstone-frontend-theta-nine.vercel.app/
 Deployment
 
 Frontend deployed using Vercel.
