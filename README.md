@@ -79,41 +79,7 @@ blog-frontend
 
 ---
 
-# Installation and Setup
 
-## Clone Repository
-
-```bash id="zjlwm1"
-git clone https://github.com/your-username/your-repository-name.git
-```
-
-## Navigate to Frontend Folder
-
-```bash id="jlwm7a"
-cd blog-frontend
-```
-
-## Install Dependencies
-
-```bash id="3jlwmn"
-npm install
-```
-
-## Configure Environment Variables
-
-Create a `.env` file inside the frontend directory:
-
-```env id="4jlwm8"
-VITE_API_URL=your_backend_url
-```
-
-Example:
-
-```env id="6jlwmv"
-VITE_API_URL=https://your-backend.onrender.com
-```
-
----
 
 # Running the Frontend
 
