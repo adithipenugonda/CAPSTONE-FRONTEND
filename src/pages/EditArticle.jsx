@@ -52,8 +52,10 @@ const EditArticle = () => {
     if (user) {
       fetchArticle();
     } else {
-      setError('Please login to edit this article.');
-      setLoading(false);
+      setTimeout(() => {
+        setError('Please login to edit this article.');
+        setLoading(false);
+      }, 0);
     }
   }, [articleId, user]);
 

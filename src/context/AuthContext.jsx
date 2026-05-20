@@ -1,20 +1,13 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import axios from 'axios';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check if user is in localStorage on mount
+  const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   const login = async (email, password) => {
     try {
@@ -22,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       if (res.data.payload) {
         setUser(res.data.payload);
         localStorage.setItem('user', JSON.stringify(res.data.payload));
-        return { success: true };
+        return { success: true, user: res.data.payload };
       }
       return { success: false, message: res.data.message };
     } catch (error) {
@@ -42,8 +35,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
-      {!loading && children}
+    <AuthContext.Provider value={{ user, login, logout, loading: false }}>
+      {children}
     </AuthContext.Provider>
   );
 };

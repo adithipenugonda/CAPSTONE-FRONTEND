@@ -26,7 +26,9 @@ const Home = () => {
     if (user) {
       fetchArticles();
     } else {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 0);
     }
   }, [user]);
 

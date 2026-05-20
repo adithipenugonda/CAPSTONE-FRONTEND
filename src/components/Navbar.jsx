@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
-import { BookOpen, LogOut, User, LayoutDashboard, PlusCircle, Sun, Moon } from 'lucide-react';
+import { BookOpen, LogOut, LayoutDashboard, PlusCircle, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -51,7 +51,7 @@ const Navbar = () => {
                   <PlusCircle size={18} /> Write
                 </Link>
               )}
-              {(user.role === 'AUTHOR' || user.role === 'ADMIN') && (
+              {user && (
                 <Link to="/dashboard" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   <LayoutDashboard size={18} /> Dashboard
                 </Link>
